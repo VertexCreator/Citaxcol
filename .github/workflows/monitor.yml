@@ -3,6 +3,11 @@ name: Monitor citas pasaporte
 on:
   # Disparo principal: cron-job.org llama a la API cada 5 min (puntual)
   workflow_dispatch:
+    inputs:
+      prueba:
+        description: "Enviar solo una notificación de prueba"
+        type: boolean
+        default: false
   # Respaldo por si cron-job.org falla (GitHub puede retrasarlo)
   schedule:
     - cron: "*/15 * * * *"
@@ -31,7 +36,12 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python monitor.py --once --services PASAPORTE
+        run: |
+          if [ "${{ inputs.prueba }}" = "true" ]; then
+            python monitor.py --test-notify
+          else
+            python monitor.py --once --services PASAPORTE
+          fi
 
       - name: Guardar estado
         run: |
