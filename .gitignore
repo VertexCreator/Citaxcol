@@ -1,0 +1,5 @@
+config.env
+monitor.log
+run.sh
+com.citas.consulado.plist
+__pycache__/
