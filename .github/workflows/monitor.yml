@@ -1,4 +1,4 @@
-name: Monitor citas pasaporte
+name: Monitor citas consulado
 
 on:
   # Disparo principal: cron-job.org llama a la API cada 5 min (puntual)
@@ -40,7 +40,10 @@ jobs:
           if [ "${{ inputs.prueba }}" = "true" ]; then
             python monitor.py --test-notify
           else
-            python monitor.py --once --services PASAPORTE
+            python monitor.py --once --services PASAPORTE \
+              "Registro Civil de Defunción" \
+              "Registro Civil de Nacimiento" \
+              "Registro Civil de Matrimonio"
           fi
 
       - name: Guardar estado
