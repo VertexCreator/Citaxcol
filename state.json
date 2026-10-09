@@ -1,6 +1,9 @@
 {
  "Registro Civil de Defunción": [],
- "Registro Civil de Nacimiento": [],
+ "Registro Civil de Nacimiento": [
+  "2026-10-14 10:00-11:00",
+  "2026-10-15 10:00-12:00"
+ ],
  "Registro Civil de Matrimonio": [],
  "PASAPORTE": []
 }
